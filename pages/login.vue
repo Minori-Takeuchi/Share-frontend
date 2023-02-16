@@ -15,6 +15,9 @@
 
 
 <script>
+
+
+
 import firebase from '~/plugins/firebase'
 export default {
   data() {
@@ -38,8 +41,8 @@ export default {
 
         this.$axios.get('sanctum/csrf-cookie');
 
-        this.$store.commit('index/login',user);
-            
+        this.$store.dispatch('loginAction', user)
+        
         this.$auth.loginWith('laravelSanctum', {
           withCredential: true,
           data: user

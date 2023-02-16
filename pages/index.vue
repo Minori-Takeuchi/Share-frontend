@@ -6,10 +6,13 @@
         <div class="wrap-s">
           <p class="ttl m-15">ホーム</p>
         </div>
-        <!-- ログイン確認（仮） -->
-        <p class="txt">{{ $store.state.user }}</p>
         <div class="wrap-m">
-          <Message v-for="(post, index) in posts" :key="index" :post="post"></Message>
+          <Message
+            v-for="(post, index) in posts" :key="index"
+            :post="post"
+            @sendDeletePost="deletePost"
+            @sendLike="like"
+            ></Message>
         </div>
       </div>
     </div>
@@ -26,14 +29,26 @@ export default {
   },
   methods: {
     async getPost() {
-      const resData = await this.$axios.get("http://127.0.0.1:8000/api/post/");
+      const resData = await this.$axios.get("/api/post/");
       this.postList = resData.data.data
       this.posts = this.postList.filter((e) =>
         e.user_id === this.$store.state.user);
     },
+    
+    // 投稿の追加
     newPost(sendData) {
       this.postList.push(sendData);
     },
+    // 投稿の削除
+    async deletePost(sendData) {
+      this.postList.splice(sendData);
+      await this.$axios.delete("/api/post/" + sendData.post.id)
+      this.getPost();
+    },
+    // async like() {
+    //   this.postList.push(sendData);
+    //   console.log(sendData)
+    // }
   },
   async created() {
     await this.getPost()

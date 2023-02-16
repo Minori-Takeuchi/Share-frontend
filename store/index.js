@@ -1,5 +1,5 @@
 export const state = () => ({
-  user: '',
+  user: 'hZYDcL7vCrTALfduSVjWqH6wCqx2',
 })
 
 export const mutations = {
