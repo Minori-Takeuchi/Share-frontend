@@ -7,8 +7,8 @@
         <nuxt-link to="/" class="txt">ホーム</nuxt-link>
       </div>
       <div class="item flex">
-        <img src="@/assets/img/logout.png" alt="ログアウト" class="item-img">
-        <a @click="logout" class="txt">ログアウト</a>
+        <img src="@/assets/img/logout.png" @click="logout" alt="ログアウト" class="item-img">
+        <a @click="logout" class="txt pointer">ログアウト</a>
       </div>
       <br>
       <p class="txt">シェア</p>
@@ -77,7 +77,7 @@ export default {
 .side-nav {
   background: black;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   padding: auto;
 }
 .item {

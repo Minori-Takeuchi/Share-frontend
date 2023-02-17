@@ -6,12 +6,13 @@
         <div class="wrap-s">
           <p class="ttl m-15">ホーム</p>
         </div>
-        <div class="wrap-m">
+        <div class="wrap-m" v-for="(post, index) in posts" :key="index"
+              >
           <Message
-            v-for="(post, index) in posts" :key="index"
             :post="post"
             @sendDeletePost="deletePost"
             @sendLike="like"
+            @sendUnLike="unlike"
             ></Message>
         </div>
       </div>
@@ -23,8 +24,8 @@
 export default {
   data() {
     return {
-      posts: [{}],
-      postList: [{}],
+      posts: [],
+      postList: [],
     }
   },
   methods: {
@@ -45,10 +46,17 @@ export default {
       await this.$axios.delete("/api/post/" + sendData.post.id)
       this.getPost();
     },
-    // async like() {
-    //   this.postList.push(sendData);
-    //   console.log(sendData)
-    // }
+    async like() {
+      await this.$axios.create("/api/like/")
+      this.postList.push(sendData);
+      this.getPost();
+      console.log(sendData)
+    },
+    async unLike(sendData) {
+      this.postList.splice(sendData);
+      await this.$axios.delete("/api/like/" + sendData)
+      this.getPost();
+    },
   },
   async created() {
     await this.getPost()
@@ -107,6 +115,10 @@ export default {
 }
 
 .btn {
+  cursor: pointer;
+}
+
+.pointer {
   cursor: pointer;
 }
 </style>

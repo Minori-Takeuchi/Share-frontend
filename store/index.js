@@ -1,3 +1,5 @@
+import createPersistedState from 'vuex-persistedstate'
+
 export const state = () => ({
   user: 'hZYDcL7vCrTALfduSVjWqH6wCqx2',
 })
@@ -16,3 +18,11 @@ export const actions = {
     commit('login', user);
   }
 }
+
+plugins: [createPersistedState(
+    { // ストレージのキーを指定
+      key: 'share_app',
+      // ストレージの種類を指定
+      storage: window.sessionStorage
+    }
+)]
