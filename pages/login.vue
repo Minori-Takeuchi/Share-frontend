@@ -35,13 +35,13 @@ export default {
       firebase
       .auth().signInWithEmailAndPassword(this.email, this.password)
       .then((userCredential) => {
-        const user = userCredential.user.uid;
+        const uid = userCredential.user.uid;
         this.$router.replace("/");
         alert('ログインしました')
 
         this.$axios.get('sanctum/csrf-cookie');
 
-        this.$store.dispatch('loginAction', user)
+        this.$store.dispatch('loginAction', uid)
         
         this.$auth.loginWith('laravelSanctum', {
           withCredential: true,

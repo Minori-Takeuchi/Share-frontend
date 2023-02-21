@@ -5,14 +5,14 @@
       <div class="main">
         <div class="wrap-s">
           <p class="ttl m-15">ホーム</p>
+
         </div>
-        <div class="wrap-m" v-for="(post, index) in posts" :key="index"
-              >
+        <div class="wrap-m" v-for="(post, index) in posts" :key="index">
           <Message
             :post="post"
             @sendDeletePost="deletePost"
             @sendLike="like"
-            @sendUnLike="unlike"
+            @sendUnLike="unLike"
             ></Message>
         </div>
       </div>
@@ -30,37 +30,56 @@ export default {
   },
   methods: {
     async getPost() {
-      const resData = await this.$axios.get("/api/post/");
-      this.postList = resData.data.data
+      const postsData = await this.$axios.get("/api/post/");
+      this.postList = postsData.data.data.map((posts) => {
+        return {
+          id: posts.id,
+          content: posts.content,
+          user_id: posts.user_id,
+          user_name: posts.user.name,
+          likesLength: posts.likes.length,
+          likes: posts.likes
+        }
+      })
       this.posts = this.postList.filter((e) =>
         e.user_id === this.$store.state.user);
     },
-    
     // 投稿の追加
     newPost(sendData) {
-      this.postList.push(sendData);
+      this.postList.push(sendData)
+      alert("投稿しました")
     },
     // 投稿の削除
     async deletePost(sendData) {
-      this.postList.splice(sendData);
       await this.$axios.delete("/api/post/" + sendData.post.id)
+      const index = this.posts.findIndex(({ id }) => id == sendData.post.id)
+        alert("投稿を削除しました")
+        console.log(index)
+      this.posts.splice(index)
       this.getPost();
     },
-    async like() {
-      await this.$axios.create("/api/like/")
-      this.postList.push(sendData);
+    // いいね作成
+    async like(sendData) {
+      const index = this.posts.findIndex(({ id }) => id == sendData.post_id)
+      console.log(index)
+      await this.$axios.post("/api/like/", sendData)
+      this.posts[index].likes.push(sendData);
       this.getPost();
-      console.log(sendData)
+      console.log(this.posts[index])
+      alert("いいねしました")
     },
+    // いいね削除
     async unLike(sendData) {
-      this.postList.splice(sendData);
-      await this.$axios.delete("/api/like/" + sendData)
+      await this.$axios.delete("/api/like/" + sendData.id)
+      const index = this.posts.findIndex(({ id }) => id == sendData.post_id)
+      this.posts[index].likes.splice(sendData);
+      alert("いいねを取り消しました")
       this.getPost();
     },
   },
   async created() {
     await this.getPost()
-},
+  }
 }
 </script>
 <style>
@@ -114,11 +133,17 @@ export default {
   cursor: pointer;
 }
 
-.btn {
+.pointer {
   cursor: pointer;
 }
 
-.pointer {
+.btn {
+  border-radius: 30px;
+  background: rgb(90, 33, 248);
+  width: 100px;
+  height: 40px;
+  color:white;
+  display: block;
   cursor: pointer;
 }
 </style>

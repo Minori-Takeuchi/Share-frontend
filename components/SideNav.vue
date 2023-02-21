@@ -12,6 +12,7 @@
       </div>
       <br>
       <p class="txt">シェア</p>
+      <p class="txt">{{ $store.state.user }}</p>
       <validation-observer ref="obs" v-slot="ObserverProps">
         <form @submit="postAdd">
           <validation-provider v-slot="ProviderProps" rules="required|max:120">
@@ -19,7 +20,7 @@
             <div class="error txt">{{ ProviderProps.errors[0] }}</div>
             <br>
           </validation-provider>
-          <button @click="insertPost" class="btn" :disabled="ObserverProps.invalid || !ObserverProps.validated">シェアする</button>
+          <button @click="insertPost" class="btn share-btn" :disabled="ObserverProps.invalid || !ObserverProps.validated">シェアする</button>
         </form>
       </validation-observer>
     </div>
@@ -93,13 +94,8 @@ textarea {
   font-size:20px;
   padding: 5px;
 }
-.btn {
-  border-radius: 30px;
-  background: rgb(90, 33, 248);
-  width: 100px;
-  height: 40px;
-  color:white;
+
+.share-btn {
   margin: 15px auto;
-  display: block;
 }
 </style>

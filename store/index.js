@@ -1,7 +1,7 @@
 import createPersistedState from 'vuex-persistedstate'
 
 export const state = () => ({
-  user: 'hZYDcL7vCrTALfduSVjWqH6wCqx2',
+  user: '4E3TL1H8rpajw9759NHIdfJzJt33',
 })
 
 export const mutations = {

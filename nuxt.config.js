@@ -1,4 +1,5 @@
 export default {
+  
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
 
@@ -30,7 +31,7 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '~/plugins/firebase.js',
-    {src: '@/plugins/vee-validate.js'},
+    { src: '@/plugins/vee-validate.js' },
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -58,6 +59,7 @@ export default {
   '/sanctum': 'http://localhost:8000',
   },
 
+
   auth: {
     strategies: {
       laravelSanctum: {
@@ -77,7 +79,7 @@ export default {
       },
     },
     redirect: {
-      login: 'auth/login',
+      login: '/login',
       logout: '/',
       home: '/',
     },
