@@ -32,6 +32,7 @@ export default {
   plugins: [
     '~/plugins/firebase.js',
     { src: '@/plugins/vee-validate.js' },
+    { src: '~/plugins/persistedstate.js', ssr: false}
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -63,28 +64,28 @@ export default {
     middleware: 'authenticated'
   },
 
-  auth: {
-    strategies: {
-      laravelSanctum: {
-        provider: 'laravel/sanctum',
-        url: 'http://localhost:8000',
-        endpoints: {
-          login: {
-            url: '/api/auth/login',
-          },
-          logout: {
-          url: '/api/auth/logout',
-          },
-          user: {
-            url: '/auth/user',
-          },
-        },
-      },
-    },
-    redirect: {
-      login: '/login',
-    },
-  },
+  // auth: {
+  //   strategies: {
+  //     laravelSanctum: {
+  //       provider: 'laravel/sanctum',
+  //       url: 'http://localhost:8000',
+  //       endpoints: {
+  //         login: {
+  //           url: '/api/auth/login',
+  //         },
+  //         logout: {
+  //         url: '/api/auth/logout',
+  //         },
+  //         user: {
+  //           url: '/auth/user',
+  //         },
+  //       },
+  //     },
+  //   },
+  //   redirect: {
+  //     login: '/login',
+  //   },
+  // },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

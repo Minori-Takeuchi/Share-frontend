@@ -15,14 +15,4 @@ export const actions = {
     commit('login', user);
   }
 }
-// export default ({ store }) => {
-//   createPersistedState(
-//     {
-//       key: 'share_app',
-//       storage: window.sessionStorage
-//     })
-//   state: () => 
-//     {
-//       user:''
-//     }
-// }
+

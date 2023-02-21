@@ -1,5 +1,6 @@
 <template>
   <div class="login">
+    <AuthHeader class="header"></AuthHeader>
     <label>
       メールアドレス： <input v-model="email" type="email"/>
     </label>

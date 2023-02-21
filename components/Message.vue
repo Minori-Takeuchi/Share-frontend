@@ -20,9 +20,6 @@ export default {
   props: {
     post: {},
   },
-  data() {
-    isLiked :''
-  },
   methods: {
     // 投稿削除
     deletePost() {
