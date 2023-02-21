@@ -59,6 +59,9 @@ export default {
   '/sanctum': 'http://localhost:8000',
   },
 
+  router: {
+    middleware: 'authenticated'
+  },
 
   auth: {
     strategies: {
@@ -73,15 +76,13 @@ export default {
           url: '/api/auth/logout',
           },
           user: {
-            url: '/api/user',
+            url: '/auth/user',
           },
         },
       },
     },
     redirect: {
       login: '/login',
-      logout: '/',
-      home: '/',
     },
   },
 

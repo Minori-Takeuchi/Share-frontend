@@ -12,12 +12,7 @@
     <br />
   </div>
 </template>
-
-
 <script>
-
-
-
 import firebase from '~/plugins/firebase'
 export default {
   data() {
@@ -33,21 +28,13 @@ export default {
         return;
       }
       firebase
-      .auth().signInWithEmailAndPassword(this.email, this.password)
-      .then((userCredential) => {
-        const uid = userCredential.user.uid;
-        this.$router.replace("/");
-        alert('ログインしました')
-
-        this.$axios.get('sanctum/csrf-cookie');
-
-        this.$store.dispatch('loginAction', uid)
-        
-        this.$auth.loginWith('laravelSanctum', {
-          withCredential: true,
-          data: user
-        });
-      })
+        .auth().signInWithEmailAndPassword(this.email, this.password)
+        .then((userCredential) => {
+          const uid = userCredential.user.uid;
+          this.$router.push("/");
+          alert('ログインしました')
+          this.$store.dispatch('loginAction', uid)
+        })
     }
   }
 }

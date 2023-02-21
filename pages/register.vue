@@ -37,17 +37,11 @@ export default {
             const uid = data.user.uid
             this.$store.dispatch('loginAction', uid)
 
-            this.$axios.get('sanctum/csrf-cookie');
-
             const user = {
               name: this.name,
               id: uid,
             }
-            this.$auth.loginWith('laravelSanctum', {
-              withCredential: true,
-              data: user,
-            });
-
+            this.$axios.post('/api/user/',user);
           })
         });
     },
