@@ -26,18 +26,23 @@
             <td class="txt">{{ comment.comment }}</td>
           </tr>
         </table>
-        <input v-model="newComment" name="コメント" class="comment">
-        <br>
+        <validation-observer ref="obs" v-slot="ObserverProps">
+        <validation-provider v-slot="ProviderProps" rules="required|max:120">
+          <input v-model="newComment" name="コメント" class="comment">
+          <div class="error">{{ ProviderProps.errors[0] }}</div>
+        </validation-provider>
           <div class="flex comment-btn">
-            <button @click="insertComment" class="btn">コメント</button>
+            <button @click="insertComment" class="btn"
+            :disabled="ObserverProps.invalid || !ObserverProps.validated">コメント</button>
           </div>
+        </validation-observer>
       </div>
     </div>
   </div>
 </template>
 <script>
 export default {
-  middleware: ['auth'],
+  middleware: ['authenticated'],
   data() {
     return {
       post: {},
@@ -127,7 +132,6 @@ export default {
   display: inline-block;
   align-items: center;
 }
-
 .comment {
   width: 90%;
   border-radius: 10px;
@@ -139,10 +143,14 @@ export default {
   margin: 20px auto;
   display: block;
 }
-
 .comment-btn {
   justify-content:flex-end;
   margin: 0 100px;
+}
+.error {
+  color: white;
+  margin-left: 60px;
+  font-size: large;
 }
 
 </style>

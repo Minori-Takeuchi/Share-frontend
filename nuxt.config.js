@@ -25,7 +25,7 @@ export default {
 
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [
-    '@/assets/css/reset.css'
+    '@/assets/css/reset.css',
   ],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
@@ -57,35 +57,12 @@ export default {
   },
   proxy: {
   '/api': 'http://localhost:8000',
-  '/sanctum': 'http://localhost:8000',
   },
 
   router: {
     middleware: 'authenticated'
   },
 
-  // auth: {
-  //   strategies: {
-  //     laravelSanctum: {
-  //       provider: 'laravel/sanctum',
-  //       url: 'http://localhost:8000',
-  //       endpoints: {
-  //         login: {
-  //           url: '/api/auth/login',
-  //         },
-  //         logout: {
-  //         url: '/api/auth/logout',
-  //         },
-  //         user: {
-  //           url: '/auth/user',
-  //         },
-  //       },
-  //     },
-  //   },
-  //   redirect: {
-  //     login: '/login',
-  //   },
-  // },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {

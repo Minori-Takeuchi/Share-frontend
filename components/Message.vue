@@ -2,7 +2,6 @@
   <div class="post wrap-m">
     <div class="post-item flex">
       <p class="bolder txt">{{ post.user_name }}</p>
-      <!-- いいねをしているとき -->
       <img
         @click="checkLike"
         src="~/assets/img/heart.png"
@@ -26,7 +25,11 @@ export default {
       const sendData = {
         post: this.post,
       }
+      if(sendData.post.user_id === this.$store.state.user) {
       this.$emit('sendDeletePost', sendData)
+      } else {
+        alert('この投稿は削除できません')
+      }
     },
     // コメントページへ
     goPostDetail() {

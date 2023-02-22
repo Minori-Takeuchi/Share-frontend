@@ -31,7 +31,7 @@ export default {
   methods: {
     async getPost() {
       const postsData = await this.$axios.get("/api/post/");
-      this.postList = postsData.data.data.map((posts) => {
+      this.posts = postsData.data.data.map((posts) => {
         return {
           id: posts.id,
           content: posts.content,
@@ -41,13 +41,10 @@ export default {
           likes: posts.likes
         }
       })
-      this.posts = this.postList.filter((e) =>
-        e.user_id === this.$store.state.user);
     },
     // 投稿の追加
     newPost(sendData) {
-      this.postList.push(sendData)
-      alert("投稿しました")
+      this.posts.push(sendData)
     },
     // 投稿の削除
     async deletePost(sendData) {
@@ -65,7 +62,6 @@ export default {
       await this.$axios.post("/api/like/", sendData)
       this.posts[index].likes.push(sendData);
       this.getPost();
-      console.log(this.posts[index])
       alert("いいねしました")
     },
     // いいね削除
@@ -87,21 +83,17 @@ export default {
   width: 100vw;
   background: black;
 }
-
 .main {
   width: 80vw;
 }
-
 .flex {
   display: flex;
 }
-
 .side {
   width: 20vw;
   position: sticky;
   top: 0;
 }
-
 .txt {
   text-decoration: none;
   color: white;
@@ -109,40 +101,34 @@ export default {
   align-items: center;
   margin: 10px;
 }
-
 .m-15 {
   margin: 15px;
   height: 100%;
 }
-
 .wrap-s {
   width: 100%;
   border: 3px solid white;
 }
-
 .ttl {
   color: white;
   display: inline-block;
   align-items: center;
   padding-left: 20px;
 }
-
 .item-img {
   width: 25px;
   height: 25px;
   cursor: pointer;
 }
-
 .pointer {
   cursor: pointer;
 }
-
 .btn {
   border-radius: 30px;
   background: rgb(90, 33, 248);
   width: 100px;
   height: 40px;
-  color:white;
+  color: white;
   display: block;
   cursor: pointer;
 }

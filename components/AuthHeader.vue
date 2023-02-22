@@ -19,7 +19,7 @@
   .header-logo {
     width: 100px;
     height: 35px;
-    margin: 10px ;
+    margin: 20px;
   }
   .header-list {
     display: flex;
@@ -30,7 +30,6 @@
   .header-list-item {
     text-decoration: none;
     color: white;
-    font-size: small;
     display: inline-block;
     margin-right: 10px;
   }

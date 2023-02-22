@@ -13,6 +13,6 @@ export const mutations = {
 export const actions = {
   loginAction({ commit }, user) {
     commit('login', user);
-  }
+  },
 }
 

@@ -1,69 +1,45 @@
-# frontend
+# アプリケーション名
+SHARE SNS風webアプリ
+< --- トップ画面の画像 ---- >
 
-## Build Setup
+## 作成した目的
+日々感じたことを発信する、他人と繋がるためのwebアプリです。
 
-```bash
-# install dependencies
-$ yarn install
+## 他のリポジトリ
+バックエンドのリポジトリ
+https://github.com/Minori-Takeuchi/2023.2.22_Takeuchi_backend.git
 
-# serve with hot reload at localhost:3000
-$ yarn dev
+## 機能一覧
+ユーザー認証機能
+投稿の表示、追加、削除
+いいね機能
+コメント機能
 
-# build for production and launch server
-$ yarn build
-$ yarn start
+## 使用技術（実行環境）
+フロントエンド　Nuxt.js 2.15.8
+バックエンド　　Laravel　8.x
+firebase Authentication 11.22.0
+## テーブル設計
+< --- 作成したテーブル設計の画像 ---- >
 
-# generate static project
-$ yarn generate
-```
+## ER図
+< --- 作成したER図の画像 ---- >
 
-For detailed explanation on how things work, check out the [documentation](https://nuxtjs.org).
+## 環境構築
+###mysqlにてshare_databaseを作成する
+create database share_database
+###テストデータ準備
+UsersTableSeeder , PostsTableSeeder , CommentsTableSeeder
+php artisan db:seed
+###ローカルサーバーの立ち上げ
+####フロンドエンド
+yarn dev
+####バックエンド
+php artisan serve
+###http://localhost:3000/login よりログイン
+ゲストログインには下記テストユーザーをご利用下さい
 
-## Special Directories
-
-You can create the following extra directories, some of which have special behaviors. Only `pages` is required; you can delete them if you don't want to use their functionality.
-
-### `assets`
-
-The assets directory contains your uncompiled assets such as Stylus or Sass files, images, or fonts.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/assets).
-
-### `components`
-
-The components directory contains your Vue.js components. Components make up the different parts of your page and can be reused and imported into your pages, layouts and even other components.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/components).
-
-### `layouts`
-
-Layouts are a great help when you want to change the look and feel of your Nuxt app, whether you want to include a sidebar or have distinct layouts for mobile and desktop.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/layouts).
-
-
-### `pages`
-
-This directory contains your application views and routes. Nuxt will read all the `*.vue` files inside this directory and setup Vue Router automatically.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/get-started/routing).
-
-### `plugins`
-
-The plugins directory contains JavaScript plugins that you want to run before instantiating the root Vue.js Application. This is the place to add Vue plugins and to inject functions or constants. Every time you need to use `Vue.use()`, you should create a file in `plugins/` and add its path to plugins in `nuxt.config.js`.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/plugins).
-
-### `static`
-
-This directory contains your static files. Each file inside this directory is mapped to `/`.
-
-Example: `/static/robots.txt` is mapped as `/robots.txt`.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/static).
-
-### `store`
-
-This directory contains your Vuex store files. Creating a file in this directory automatically activates Vuex.
-
-More information about the usage of this directory in [the documentation](https://nuxtjs.org/docs/2.x/directory-structure/store).
+## firebase認証用テストユーザー
+(UsersTableSeederへ登録済み)
+1．メールアドレス：gest@gest.com　パスワード：gestpass 
+2．メールアドレス：gest2@gest.com　パスワード：gestpass

@@ -12,12 +12,11 @@
       </div>
       <br>
       <p class="txt">シェア</p>
-      <p class="txt">{{ $store.state.user }}</p>
       <validation-observer ref="obs" v-slot="ObserverProps">
         <form @submit="postAdd">
           <validation-provider v-slot="ProviderProps" rules="required|max:120">
             <textarea v-model="newContent" name="コンテンツ"></textarea>
-            <div class="error txt">{{ ProviderProps.errors[0] }}</div>
+            <div class="error-side">{{ ProviderProps.errors[0] }}</div>
             <br>
           </validation-provider>
           <button @click="insertPost" class="btn share-btn" :disabled="ObserverProps.invalid || !ObserverProps.validated">シェアする</button>
@@ -43,6 +42,7 @@ export default {
       const resData = await this.$axios.get("/api/post/");
       this.postList = resData.data.data
     },
+    // 投稿作成
     async insertPost() {
       const sendData = {
         user_id: this.$store.state.user,
@@ -51,6 +51,7 @@ export default {
       await this.$axios.post("/api/post/", sendData);
       this.newContent = null
     },
+    // 投稿データをindex.vueへ送る
     postAdd() {
       const sendData = {
         user_id: this.$store.state.user,
@@ -64,6 +65,7 @@ export default {
         .signOut()
         .then(() => {
           alert('ログアウトしました')
+          this.$store.commit('logout')
           this.$router.replace('/login')
         })
     },
@@ -94,8 +96,11 @@ textarea {
   font-size:20px;
   padding: 5px;
 }
-
 .share-btn {
   margin: 15px auto;
+}
+.error-side {
+  color: white;
+  margin:10px;
 }
 </style>

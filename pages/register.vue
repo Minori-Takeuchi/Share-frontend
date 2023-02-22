@@ -1,13 +1,27 @@
 <template>
   <div class="register">
     <AuthHeader class="header"></AuthHeader>
-    <input v-model="name" type="name" placeholder="ユーザーネーム" required >
-    <input v-model="email" type="email" placeholder="メールアドレス" required >
-    <br />
-    <input v-model="password" type="password" placeholder="パスワード" required >
-    <br />
-    <button @click="register">新規登録</button>
-    <br />
+    <div class="auth-main">
+      <div class="register-container">
+        <h2 class="auth-ttl">新規登録</h2>
+        <validation-observer ref="obs" v-slot="ObserverProps">
+          <validation-provider v-slot="ProviderProps" rules="required|max:20">
+          <input class="auth-item" v-model="name" type="name" name="ユーザーネーム" placeholder="ユーザーネーム" required >
+          <div class="error">{{ ProviderProps.errors[0] }}</div>
+          </validation-provider>
+        <validation-provider v-slot="ProviderProps" rules="required|email">
+        <input class="auth-item" v-model="email" type="email" name="メールアドレス" placeholder="メールアドレス" required >
+        <div class="error">{{ ProviderProps.errors[0] }}</div>
+        </validation-provider>
+        <validation-provider v-slot="ProviderProps" rules="required|min:6">
+        <input class="auth-item" v-model="password" type="password" name="パスワード" placeholder="パスワード" required >
+        <div class="error">{{ ProviderProps.errors[0] }}</div>
+        </validation-provider>
+        <button @click="register" class="btn"
+        :disabled="ObserverProps.invalid || !ObserverProps.validated">新規登録</button>
+        </validation-observer>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -49,8 +63,25 @@ export default {
 };
 </script>
 <style>
-.header {
-  width: 100vw;
-  height: 10vh;
+.register-container {
+  width: 500px;
+  height: 50vh;
+  background: white;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  border-radius: 10px;
+}
+.btn {
+  border-radius: 30px;
+  background: rgb(90, 33, 248);
+  border:none;
+  width: 120px;
+  height: 40px;
+  color: white;
+  display: block;
+  cursor: pointer;
+  margin-top: 25px;
+  font-size: large;
 }
 </style>
