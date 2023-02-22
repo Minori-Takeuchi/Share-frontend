@@ -1,6 +1,16 @@
 # アプリケーション名
 SHARE SNS風webアプリ
-< --- トップ画面の画像 ---- >
+###ログイン画面
+![login](https://user-images.githubusercontent.com/119908511/220498632-69b87ec2-2ce2-4c36-b384-7b3ccd956225.png)
+
+###新規作成画面
+![register](https://user-images.githubusercontent.com/119908511/220498645-d6851793-61f2-4eda-bbed-53b39240c456.png)
+
+###トップ画面
+![index](https://user-images.githubusercontent.com/119908511/220498662-349a60ee-817f-4b55-8cef-3ac374234506.png)
+
+###コメント画面
+![_id](https://user-images.githubusercontent.com/119908511/220498673-0fcb4828-e943-44a1-907f-30f2c5828e01.png)
 
 ## 作成した目的
 日々感じたことを発信する、他人と繋がるためのwebアプリです。
@@ -20,10 +30,10 @@ https://github.com/Minori-Takeuchi/2023.2.22_Takeuchi_backend.git
 バックエンド　　Laravel　8.x
 firebase Authentication 11.22.0
 ## テーブル設計
-< --- 作成したテーブル設計の画像 ---- >
+![テーブル設計](https://user-images.githubusercontent.com/119908511/220498717-5ebd6e0d-3762-4eee-ba8c-b75589ee6a47.png)
 
 ## ER図
-< --- 作成したER図の画像 ---- >
+![ER図](https://user-images.githubusercontent.com/119908511/220498736-67fbe0a7-d588-4dff-b007-bb9fa12e5e7f.png)
 
 ## 環境構築
 ###mysqlにてshare_databaseを作成する
