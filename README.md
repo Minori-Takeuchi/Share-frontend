@@ -1,5 +1,4 @@
-# SHARE
-SNS風webアプリ
+# SHARE -SNS風webアプリ-
 *ログイン画面*
 ![login](https://user-images.githubusercontent.com/119908511/220498632-69b87ec2-2ce2-4c36-b384-7b3ccd956225.png)
 
