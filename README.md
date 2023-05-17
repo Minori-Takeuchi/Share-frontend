@@ -36,23 +36,10 @@ firebase Authentication: 11.22.0
 ![ER図](https://user-images.githubusercontent.com/119908511/220498736-67fbe0a7-d588-4dff-b007-bb9fa12e5e7f.png)
 
 ## 環境構築
-*mysqlにてshare_databaseを作成する*
+・.env.exampleを.envにコピーし環境構築を行ってください  
 
-create database share_database
-
-*テストデータ準備*
-
-UsersTableSeeder , PostsTableSeeder , CommentsTableSeeder  php artisan db:seed  
-
-*ローカルサーバーの立ち上げ*  
-
-フロンドエンド  
-yarn dev  
-バックエンド  
-php artisan serve  
-http://localhost:3000/login よりログイン
-
-*ゲストログインには下記テストユーザーをご利用下さい*
+*ゲストログインには下記テストユーザーをご利用下さい*  
+※現在は運用を休止しています。
 
 ## firebase認証用テストユーザー
 (UsersTableSeederへ登録済み)
