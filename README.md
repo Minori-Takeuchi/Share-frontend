@@ -16,7 +16,7 @@
 
 ## 他のリポジトリ
 バックエンドのリポジトリ  
-https://github.com/Minori-Takeuchi/2023.2.22_Takeuchi_backend.git
+https://github.com/Minori-Takeuchi/Share-backend.git
 
 ## 機能一覧
 ユーザー認証機能  
